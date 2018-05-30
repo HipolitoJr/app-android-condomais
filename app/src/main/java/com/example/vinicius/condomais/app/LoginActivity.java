@@ -1,7 +1,9 @@
-package com.example.vinicius.condomais;
+package com.example.vinicius.condomais.app;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+
+import com.example.vinicius.condomais.R;
 
 public class LoginActivity extends AppCompatActivity {
 
