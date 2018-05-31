@@ -49,7 +49,8 @@
             android:layout_height="wrap_content">
 
             <EditText
-                android:hint="Email"
+                android:id="@+id/edit_usuario_login"
+                android:hint="Usuário"
                 android:textColorHint="@android:color/white"
                 android:shadowColor="@android:color/white"
                 android:textColorLink="@android:color/white"
@@ -68,6 +69,7 @@
             android:layout_height="wrap_content">
 
             <EditText
+                android:id="@+id/edit_senha_login"
                 android:textSize="18sp"
                 android:hint="Senha"
                 android:inputType="textPassword"
@@ -88,18 +90,20 @@
         android:padding="18dp">
 
         <Button
+            android:id="@+id/btn_entrar_login"
             android:paddingLeft="24dp"
             android:paddingRight="24dp"
             android:text="entrar"
+            android:textColor="@color/colorPrimaryDark"
             android:background="@drawable/botao_login"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
 
         <Button
+            android:id="@+id/btn_cadastrar_login"
             android:paddingLeft="24dp"
             android:paddingRight="24dp"
             android:text="cadastrar"
-            android:textColor="@color/colorPrimary"
             android:background="@drawable/botao_cadastro"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
