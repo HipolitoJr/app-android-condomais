@@ -82,7 +82,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         String password = editSenha.getText().toString();
         String username = editUsuario.getText().toString();
 
-        return new Usuario(username, password);
+        return new Usuario(username, "", password);
     }
 
     private boolean estaLogado(){
