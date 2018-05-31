@@ -1,4 +1,7 @@
-package com.example.vinicius.condomais.infra;
+package com.example.vinicius.condomais.infra.api;
+
+import com.example.vinicius.condomais.infra.api.endpoints.TokenEndPoint;
+import com.example.vinicius.condomais.models.TokenAPIModel;
 
 import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
@@ -8,13 +11,15 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class APIService {
 
 
-    public static  final String BASE_URL = "http://localhost:8000/api/v1/";
+    public static  final String BASE_URL = "http://192.168.0.21:8000/api/v1/";
     public Retrofit retrofit;
     public Interceptor interceptor;
 
+    public TokenEndPoint tokenEndPoint;
+
     public APIService(String token){
 
-        this.interceptor = (Interceptor) new InterceptorAPI("token " + token);
+        this.interceptor = new InterceptorAPI("token " + token);
 
         OkHttpClient.Builder builderCliente = new OkHttpClient.Builder();
         builderCliente.interceptors().add(this.interceptor);
@@ -25,6 +30,8 @@ public class APIService {
                 .addConverterFactory(GsonConverterFactory.create())
                 .client(cliente)
                 .build();
+
+        tokenEndPoint = retrofit.create(TokenEndPoint.class);
     }
 
 }

@@ -1,4 +1,4 @@
-package com.example.vinicius.condomais.infra;
+package com.example.vinicius.condomais.infra.api;
 
 import java.io.IOException;
 
