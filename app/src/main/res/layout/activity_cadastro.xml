@@ -92,7 +92,7 @@
             android:layout_height="wrap_content">
 
             <EditText
-                android:id="@+id/edit_cadastro"
+                android:id="@+id/edit_confirma_senha_cadastro"
                 android:hint="Digite a senha novamente:"
                 android:inputType="textPassword"
                 android:layout_width="match_parent"
