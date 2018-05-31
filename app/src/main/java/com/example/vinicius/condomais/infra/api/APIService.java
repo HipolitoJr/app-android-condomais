@@ -1,6 +1,7 @@
 package com.example.vinicius.condomais.infra.api;
 
 import com.example.vinicius.condomais.infra.api.endpoints.TokenEndPoint;
+import com.example.vinicius.condomais.infra.api.endpoints.UsuarioEndPoint;
 import com.example.vinicius.condomais.models.TokenAPIModel;
 
 import okhttp3.Interceptor;
@@ -16,6 +17,7 @@ public class APIService {
     public Interceptor interceptor;
 
     public TokenEndPoint tokenEndPoint;
+    public UsuarioEndPoint usuarioEndPoint;
 
     public APIService(String token){
 
@@ -32,6 +34,7 @@ public class APIService {
                 .build();
 
         tokenEndPoint = retrofit.create(TokenEndPoint.class);
+        usuarioEndPoint = retrofit.create(UsuarioEndPoint.class);
     }
 
 }
