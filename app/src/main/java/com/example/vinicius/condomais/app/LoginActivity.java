@@ -91,7 +91,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     }
 
     private void initProxActivity(){
-        Intent intent = new Intent(this, HomeActivity.class);
+        Intent intent = new Intent(this, DrawerActivity.class);
         startActivity(intent);
         finish();
     }
