@@ -6,11 +6,11 @@
         android:radius="80dp"/>
 
     <solid
-        android:color="@color/colorPrimary"/>
+        android:color="@android:color/white"/>
 
     <stroke
         android:width="2dp"
-        android:color="@android:color/white"
+        android:color="@color/colorPrimaryDark"
         />
 
 </shape>
