@@ -13,7 +13,6 @@ public class SecurityPreferences {
         sharedPreferences = context.getSharedPreferences("condomais", Context.MODE_PRIVATE);
     }
 
-
     public void saveString(String key, String value){
         sharedPreferences.edit().putString(key, value).apply();
     }

@@ -14,6 +14,8 @@
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:layout_gravity="center"
+        android:gravity="center"
         android:layout_weight="1">
 
         <LinearLayout
@@ -56,8 +58,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 
-
-
         <android.support.design.widget.TextInputLayout
             android:textColorHint="@android:color/white"
             android:layout_margin="4dp"
@@ -67,6 +67,8 @@
             <EditText
                 android:id="@+id/edit_nome_cadastro_condominio"
                 android:hint="Nome de condomínio:"
+                android:textColor="@android:color/white"
+                android:textColorHint="@android:color/white"
                 android:inputType="textEmailAddress"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
@@ -82,6 +84,8 @@
             <EditText
                 android:id="@+id/edit_cnpj_cadastro_condominio"
                 android:hint="Informe o CNPJ:"
+                android:textColor="@android:color/white"
+                android:textColorHint="@android:color/white"
                 android:inputType="textEmailAddress"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
@@ -97,7 +101,9 @@
             <EditText
                 android:id="@+id/edit_endereco_cadastro_condominio"
                 android:hint="Endereço do condomínio:"
-                android:inputType="textPassword"
+                android:textColor="@android:color/white"
+                android:textColorHint="@android:color/white"
+                android:inputType="text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
 

@@ -2,5 +2,8 @@
 <resources>
     <color name="colorPrimary">#06b4f4</color>
     <color name="colorPrimaryDark">#07a7dc</color>
-    <color name="colorAccent">#ff4081</color>
+    <color name="colorAccent">@color/colorPrimary</color>
+
+    <color name="colorBgTaxaNaoPaga">#f7a6a7</color>
+    <color name="colorBgTaxaPaga">#b2f7a6</color>
 </resources>

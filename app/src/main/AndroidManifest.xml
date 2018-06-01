@@ -27,7 +27,21 @@
             android:name=".app.DrawerActivity"
             android:label="@string/title_activity_drawer"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".app.CadastroCondominioActivity"></activity>
+        <activity
+            android:theme="@style/Theme.AppCompat.NoActionBar"
+            android:name=".app.CadastroCondominioActivity"
+            android:parentActivityName=".app.CadastroActivity" />
+        <activity
+            android:name=".app.UnidadesHabitacionaisActivity"
+            android:parentActivityName=".app.DrawerActivity" />
+        <activity
+            android:name=".app.TaxasCondominioActivity"
+            android:parentActivityName=".app.UnidadesHabitacionaisActivity" />
+        <activity
+            android:name=".app.ItensTaxaActivity"
+            android:parentActivityName=".app.TaxasCondominioActivity" />
+        <activity android:name=".app.SobreActivity"
+            android:parentActivityName=".app.DrawerActivity"></activity>
     </application>
 
 </manifest>
