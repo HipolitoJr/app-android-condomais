@@ -6,29 +6,36 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:gravity="center"
     android:background="@color/colorPrimary"
-    tools:context=".app.CadastroActivity">
+    tools:context=".app.CadastroCondominioActivity">
+
 
     <LinearLayout
-        android:gravity="center"
-        android:orientation="horizontal"
+        android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1">
 
-        <ImageView
-            android:src="@drawable/condomais_icon"
-            android:layout_width="40dp"
-            android:layout_height="40dp" />
+        <LinearLayout
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
-        <TextView
-            android:textColor="@android:color/white"
-            android:textStyle="bold"
-            android:text="Condomais"
-            android:textSize="26sp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            <ImageView
+                android:src="@drawable/condomais_icon"
+                android:layout_width="40dp"
+                android:layout_height="40dp" />
+
+            <TextView
+                android:textColor="@android:color/white"
+                android:textStyle="bold"
+                android:text="Condomais"
+                android:textSize="26sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+        </LinearLayout>
 
     </LinearLayout>
 
@@ -40,6 +47,17 @@
         android:layout_height="0dp"
         android:layout_weight="4">
 
+        <TextView
+            android:textColor="@android:color/white"
+            android:textStyle="bold"
+            android:text="Falta pouco... Para finalizar, cadastre seu condominio"
+            android:textSize="18sp"
+            android:gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+
+
         <android.support.design.widget.TextInputLayout
             android:textColorHint="@android:color/white"
             android:layout_margin="4dp"
@@ -47,8 +65,8 @@
             android:layout_height="wrap_content">
 
             <EditText
-                android:id="@+id/edit_usuario_cadastro"
-                android:hint="Nome de usuário:"
+                android:id="@+id/edit_nome_cadastro_condominio"
+                android:hint="Nome de condomínio:"
                 android:inputType="textEmailAddress"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
@@ -62,8 +80,8 @@
             android:layout_height="wrap_content">
 
             <EditText
-                android:id="@+id/edit_email_cadastro"
-                android:hint="Endereço de email:"
+                android:id="@+id/edit_cnpj_cadastro_condominio"
+                android:hint="Informe o CNPJ:"
                 android:inputType="textEmailAddress"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
@@ -77,28 +95,14 @@
             android:layout_height="wrap_content">
 
             <EditText
-                android:id="@+id/edit_senha_cadastro"
-                android:hint="Digite sua senha:"
+                android:id="@+id/edit_endereco_cadastro_condominio"
+                android:hint="Endereço do condomínio:"
                 android:inputType="textPassword"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
 
         </android.support.design.widget.TextInputLayout>
 
-        <android.support.design.widget.TextInputLayout
-            android:textColorHint="@android:color/white"
-            android:layout_margin="4dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <EditText
-                android:id="@+id/edit_confirma_senha_cadastro"
-                android:hint="Digite a senha novamente:"
-                android:inputType="textPassword"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
-
-        </android.support.design.widget.TextInputLayout>
 
     </LinearLayout>
 
@@ -109,8 +113,8 @@
         android:layout_weight="1">
 
         <Button
-            android:id="@+id/btn_salvar_cadastro"
-            android:text="Próximo"
+            android:id="@+id/btn_salvar_cadastro_condominio"
+            android:text="Salvar"
             android:paddingLeft="24dp"
             android:paddingRight="24dp"
             android:textColor="@color/colorPrimaryDark"
@@ -119,7 +123,7 @@
             android:layout_height="wrap_content" />
 
         <Button
-            android:id="@+id/btn_cancelar_cadastro"
+            android:id="@+id/btn_cancelar_cadastro_condominio"
             android:paddingLeft="24dp"
             android:paddingRight="24dp"
             android:background="@drawable/botao_cadastro"

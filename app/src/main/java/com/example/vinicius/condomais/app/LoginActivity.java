@@ -106,6 +106,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             case R.id.btn_cadastrar_login:
                 Intent intent = new Intent(LoginActivity.this, CadastroActivity.class);
                 startActivity(intent);
+                finish();
                 break;
 
             default:
