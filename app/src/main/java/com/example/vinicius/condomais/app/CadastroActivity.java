@@ -104,7 +104,6 @@ public class CadastroActivity extends AppCompatActivity implements View.OnClickL
             String email = editEmail.getText().toString();
             String password = editSenha.getText().toString();
             Usuario usuario = new Usuario(username, email, password);
-            usuario.setSindico();
 
             cadastrarUsuario(usuario);
         }else{
