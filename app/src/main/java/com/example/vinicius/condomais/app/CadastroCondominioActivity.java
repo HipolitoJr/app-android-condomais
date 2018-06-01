@@ -82,8 +82,10 @@ public class CadastroCondominioActivity extends AppCompatActivity implements Vie
         String nome = editNome.getText().toString();
         String cnpj = editCNPJ.getText().toString();
         String endereco = editEndereco.getText().toString();
+        CondominioAPIModel condominioAPIModel = new CondominioAPIModel(nome, cnpj, endereco);
+        condominioAPIModel.setSindico(securityPreferences.getSavedLong(Constants.USUARIO_LOGADO));
 
-        return new CondominioAPIModel(nome, cnpj, endereco);
+        return condominioAPIModel;
     }
 
     private String getToken() {

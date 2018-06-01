@@ -56,6 +56,7 @@ public class CadastroActivity extends AppCompatActivity implements View.OnClickL
             public void onResponse(Call<Usuario> call, Response<Usuario> response) {
                 if (response.isSuccessful()){
                     confirmaCadastro(usuario);
+                    securityPreferences.saveLong(Constants.USUARIO_LOGADO, response.body().getId());
                 }
             }
 
@@ -66,7 +67,7 @@ public class CadastroActivity extends AppCompatActivity implements View.OnClickL
         });
     }
 
-    private void realizarLogin(Usuario usuario) {
+    private void realizarLogin(final Usuario usuario) {
 
         Call<TokenAPIModel> call = apiService.tokenEndPoint.login(usuario);
 
@@ -102,9 +103,10 @@ public class CadastroActivity extends AppCompatActivity implements View.OnClickL
             String username = editUsuario.getText().toString();
             String email = editEmail.getText().toString();
             String password = editSenha.getText().toString();
+            Usuario usuario = new Usuario(username, email, password);
+            usuario.setSindico();
 
-
-            cadastrarUsuario(new Usuario(username, email, password));
+            cadastrarUsuario(usuario);
         }else{
             Toast.makeText(this, "Senhas não conferem!", Toast.LENGTH_SHORT).show();
         }
