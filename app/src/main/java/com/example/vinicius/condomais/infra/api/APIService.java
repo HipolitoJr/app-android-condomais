@@ -1,5 +1,6 @@
 package com.example.vinicius.condomais.infra.api;
 
+import com.example.vinicius.condomais.infra.api.endpoints.CondominioEndPoint;
 import com.example.vinicius.condomais.infra.api.endpoints.TokenEndPoint;
 import com.example.vinicius.condomais.infra.api.endpoints.UsuarioEndPoint;
 import com.example.vinicius.condomais.models.TokenAPIModel;
@@ -12,12 +13,13 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class APIService {
 
 
-    public static  final String BASE_URL = "http://192.168.0.21:8000/api/v1/";
+    public static  final String BASE_URL = "http://10.0.50.2:8000/api/v1/";
     public Retrofit retrofit;
     public Interceptor interceptor;
 
     public TokenEndPoint tokenEndPoint;
     public UsuarioEndPoint usuarioEndPoint;
+    public CondominioEndPoint condominioEndPoint;
 
     public APIService(String token){
 
@@ -35,6 +37,7 @@ public class APIService {
 
         tokenEndPoint = retrofit.create(TokenEndPoint.class);
         usuarioEndPoint = retrofit.create(UsuarioEndPoint.class);
+        condominioEndPoint = retrofit.create(CondominioEndPoint.class);
     }
 
 }

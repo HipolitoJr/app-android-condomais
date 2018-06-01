@@ -1,5 +1,6 @@
 package com.example.vinicius.condomais.app;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -9,7 +10,9 @@ import android.widget.Toast;
 
 import com.example.vinicius.condomais.R;
 import com.example.vinicius.condomais.infra.api.APIService;
+import com.example.vinicius.condomais.models.TokenAPIModel;
 import com.example.vinicius.condomais.models.Usuario;
+import com.example.vinicius.condomais.utils.Constants;
 import com.example.vinicius.condomais.utils.SecurityPreferences;
 
 import butterknife.BindView;
@@ -39,19 +42,21 @@ public class CadastroActivity extends AppCompatActivity implements View.OnClickL
     }
 
     private void setupViews() {
+        securityPreferences = new SecurityPreferences(this);
         apiService = new APIService("");
 
         btnSalvar.setOnClickListener(this);
     }
 
-    private void cadastrarUsuario(Usuario usuario) {
+    private void cadastrarUsuario(final Usuario usuario) {
         Call<Usuario> usuarioCall = apiService.usuarioEndPoint.cadastrarUsuario(usuario);
 
         usuarioCall.enqueue(new Callback<Usuario>() {
             @Override
             public void onResponse(Call<Usuario> call, Response<Usuario> response) {
                 if (response.isSuccessful()){
-                    confirmaCadastro(response.body());
+                    confirmaCadastro(usuario);
+                    securityPreferences.saveLong(Constants.USUARIO_LOGADO, response.body().getId());
                 }
             }
 
@@ -62,9 +67,35 @@ public class CadastroActivity extends AppCompatActivity implements View.OnClickL
         });
     }
 
+    private void realizarLogin(final Usuario usuario) {
+
+        Call<TokenAPIModel> call = apiService.tokenEndPoint.login(usuario);
+
+        call.enqueue(new Callback<TokenAPIModel>() {
+            @Override
+            public void onResponse(Call<TokenAPIModel> call, Response<TokenAPIModel> response) {
+                if (response.isSuccessful()){
+                    logarUsuario(response.body());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<TokenAPIModel> call, Throwable t) {
+                Toast.makeText(CadastroActivity.this, "Erro" + t.getMessage().toString(), Toast.LENGTH_SHORT).show();
+            }
+        });
+
+    }
+
+    private void logarUsuario(TokenAPIModel token) {
+        securityPreferences.saveString(Constants.TOKEN, token.getToken());
+        startActivity(new Intent(this, CadastroCondominioActivity.class));
+        finish();
+    }
+
     private void confirmaCadastro(Usuario usuario) {
         Toast.makeText(this, "Usuário " + usuario.getNomeDeUsuario() + " cadastrado com sucesso!", Toast.LENGTH_SHORT).show();
-        finish();
+        realizarLogin(usuario);
     }
 
     private void criarUsuario() {
@@ -72,8 +103,10 @@ public class CadastroActivity extends AppCompatActivity implements View.OnClickL
             String username = editUsuario.getText().toString();
             String email = editEmail.getText().toString();
             String password = editSenha.getText().toString();
+            Usuario usuario = new Usuario(username, email, password);
+            usuario.setSindico();
 
-            cadastrarUsuario(new Usuario(username, email, password));
+            cadastrarUsuario(usuario);
         }else{
             Toast.makeText(this, "Senhas não conferem!", Toast.LENGTH_SHORT).show();
         }

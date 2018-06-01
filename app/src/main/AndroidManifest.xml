@@ -22,11 +22,12 @@
         </activity>
         <activity
             android:name=".app.CadastroActivity"
-            android:theme="@style/Theme.AppCompat.NoActionBar"></activity>
+            android:theme="@style/Theme.AppCompat.NoActionBar" />
         <activity
             android:name=".app.DrawerActivity"
             android:label="@string/title_activity_drawer"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".app.CadastroCondominioActivity"></activity>
     </application>
 
 </manifest>

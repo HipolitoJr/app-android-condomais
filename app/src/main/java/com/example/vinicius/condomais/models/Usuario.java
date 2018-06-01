@@ -4,9 +4,11 @@ import com.google.gson.annotations.SerializedName;
 
 public class Usuario {
 
+    @SerializedName("id") private long id;
     @SerializedName("username") private String nomeDeUsuario;
     @SerializedName("email") private String email;
     @SerializedName("password") private String senha;
+    @SerializedName("sindico") private boolean sindico;
 
     public Usuario(String nomeDeUsuario, String email, String senha) {
         this.nomeDeUsuario = nomeDeUsuario;
@@ -16,5 +18,13 @@ public class Usuario {
 
     public String getNomeDeUsuario() {
         return nomeDeUsuario;
+    }
+
+    public void setSindico() {
+        this.sindico = true;
+    }
+
+    public long getId() {
+        return this.id;
     }
 }
