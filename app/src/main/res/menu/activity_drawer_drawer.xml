@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_grupos_habitacionais"
+            android:icon="@drawable/condomais_icon"
+            android:title="@string/grupos_habitacionais" />
+        <item
+            android:id="@+id/nav_unidades_habitacionais"
+            android:icon="@drawable/ic_home"
+            android:title="@string/unidades_habitacionais" />
+        <item
+            android:id="@+id/nav_despesas"
+            android:icon="@drawable/ic_despesas"
+            android:title="Despesas" />
+        <!--<item-->
+            <!--android:id="@+id/nav_manage"-->
+            <!--android:icon="@drawable/ic_menu_manage"-->
+            <!--android:title="Tools" />-->
+    </group>
+
+    <item android:title="Outras Opções">
+        <menu>
+            <item
+                android:id="@+id/nav_sobre"
+                android:icon="@drawable/ic_sobre"
+                android:title="Sobre" />
+            <item
+                android:id="@+id/nav_sair"
+                android:icon="@drawable/ic_exit_to_app_black_48dp"
+                android:title="Sair" />
+        </menu>
+    </item>
+
+</menu>
