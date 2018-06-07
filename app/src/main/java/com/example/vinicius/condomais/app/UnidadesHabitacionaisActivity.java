@@ -8,6 +8,7 @@ import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.widget.Toast;
 
 import com.example.vinicius.condomais.R;
+import com.example.vinicius.condomais.infra.FeaturesUtils;
 import com.example.vinicius.condomais.infra.api.APIService;
 import com.example.vinicius.condomais.models.GrupoHabitacionalAPIModel;
 import com.example.vinicius.condomais.models.UnidadeHabitacionalAPIModel;
@@ -29,7 +30,6 @@ public class UnidadesHabitacionaisActivity extends AppCompatActivity {
     @BindView(R.id.rv_unidades_habitacionais) protected RecyclerView rvUnidadesHabitacionais;
 
     private APIService apiService;
-    private SecurityPreferences securityPreferences;
     private long grupoHabitacional;
 
     @Override
@@ -43,10 +43,9 @@ public class UnidadesHabitacionaisActivity extends AppCompatActivity {
     }
 
     private void setupViews() {
-        securityPreferences = new SecurityPreferences(this);
-        apiService = new APIService(getToken());
-        Intent intent = getIntent();
-        grupoHabitacional = intent.getLongExtra(Constants.GRUPO_HABITACIONAL_SELECIONADO, 0);
+        apiService = new APIService(FeaturesUtils.getToken(this));
+
+        grupoHabitacional = getIntent().getLongExtra(Constants.GRUPO_HABITACIONAL_SELECIONADO, 0);
 
         if (grupoHabitacional != 0)
             getUnidadesHabitacionais(grupoHabitacional);
@@ -81,9 +80,5 @@ public class UnidadesHabitacionaisActivity extends AppCompatActivity {
 
         rvUnidadesHabitacionais.setHasFixedSize(true);
         rvUnidadesHabitacionais.setLayoutManager(gridLayoutManager);
-    }
-
-    private String getToken() {
-        return securityPreferences.getSavedString(Constants.TOKEN);
     }
 }

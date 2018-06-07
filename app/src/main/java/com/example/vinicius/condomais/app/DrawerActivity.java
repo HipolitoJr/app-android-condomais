@@ -1,5 +1,6 @@
 package com.example.vinicius.condomais.app;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
@@ -14,6 +15,7 @@ import android.view.MenuItem;
 import android.widget.Toast;
 
 import com.example.vinicius.condomais.R;
+import com.example.vinicius.condomais.infra.FeaturesUtils;
 import com.example.vinicius.condomais.infra.api.APIService;
 import com.example.vinicius.condomais.models.GrupoHabitacionalAPIModel;
 import com.example.vinicius.condomais.utils.Constants;
@@ -33,6 +35,7 @@ public class DrawerActivity extends AppCompatActivity
 
     @BindView(R.id.rv_grupos_habitacionais) protected RecyclerView rvGruposHabitacionais;
 
+    private ProgressDialog progressDialog;
     private SecurityPreferences securityPreferences;
     private APIService apiService;
 
@@ -48,13 +51,17 @@ public class DrawerActivity extends AppCompatActivity
 
     public void setupViews(){
         initNavigation();
+        progressDialog = FeaturesUtils.initPgDialog(this, "Aguarde...");
         securityPreferences = new SecurityPreferences(this);
-        apiService = new APIService(getToken());
+        apiService = new APIService(FeaturesUtils.getToken(this));
 
         getGruposHabitacionais();
     }
 
+
     private void getGruposHabitacionais() {
+        progressDialog.show();
+
         Call<List<GrupoHabitacionalAPIModel>> call = apiService.grupoHabitacionalEndPoint.getGruposHabitacionais();
 
         call.enqueue(new Callback<List<GrupoHabitacionalAPIModel>>() {
@@ -63,10 +70,12 @@ public class DrawerActivity extends AppCompatActivity
                 if (response.isSuccessful()){
                     exibirLista(response.body());
                 }
+                progressDialog.hide();
             }
 
             @Override
             public void onFailure(Call<List<GrupoHabitacionalAPIModel>> call, Throwable t) {
+                progressDialog.hide();
                 Toast.makeText(DrawerActivity.this, "Falha na conexão", Toast.LENGTH_SHORT).show();
             }
         });
@@ -81,10 +90,6 @@ public class DrawerActivity extends AppCompatActivity
 
         rvGruposHabitacionais.setHasFixedSize(true);
         rvGruposHabitacionais.setLayoutManager(gridLayoutManager);
-    }
-
-    private String getToken() {
-        return securityPreferences.getSavedString(Constants.TOKEN);
     }
 
     @Override

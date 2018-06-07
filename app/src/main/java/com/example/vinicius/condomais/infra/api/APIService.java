@@ -18,7 +18,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class APIService {
 
 
-    public static  final String BASE_URL = "http://192.168.43.6:8000/api/v1/";
+    public static  final String BASE_URL = "http://condomais-api.herokuapp.com/api/v1/";
     public Retrofit retrofit;
     public Interceptor interceptor;
 
