@@ -78,6 +78,7 @@ public class TaxaCondominioRVAdapter extends RecyclerView.Adapter<TaxaCondominio
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(activity, ItensTaxaActivity.class);
+                intent.putExtra(Constants.UNIDADE_HABITACIONAL_SELECIONADA, taxaCondominio.getUnidadeHabitacional());
                 intent.putExtra(Constants.TAXA_CONDOMINIO_SELECIONADA, taxaCondominio.getId());
                 context.startActivity(intent);
             }

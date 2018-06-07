@@ -9,6 +9,7 @@ import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.widget.Toast;
 
 import com.example.vinicius.condomais.R;
+import com.example.vinicius.condomais.infra.FeaturesUtils;
 import com.example.vinicius.condomais.infra.api.APIService;
 import com.example.vinicius.condomais.models.TaxaCondominioAPIModel;
 import com.example.vinicius.condomais.models.UnidadeHabitacionalAPIModel;
@@ -30,7 +31,6 @@ public class TaxasCondominioActivity extends AppCompatActivity {
     @BindView(R.id.rv_taxas_condominio) protected RecyclerView rvTaxasCondominio;
 
     private APIService apiService;
-    private SecurityPreferences securityPreferences;
     private long unidadeHabitacional;
 
     @Override
@@ -43,8 +43,7 @@ public class TaxasCondominioActivity extends AppCompatActivity {
     }
 
     private void setupViews() {
-        securityPreferences = new SecurityPreferences(this);
-        apiService = new APIService(getToken());
+        apiService = new APIService(FeaturesUtils.getToken(this));
 
         unidadeHabitacional = getIntent().getLongExtra(Constants.UNIDADE_HABITACIONAL_SELECIONADA, 0);
 
@@ -83,7 +82,4 @@ public class TaxasCondominioActivity extends AppCompatActivity {
         rvTaxasCondominio.setLayoutManager(linearLayoutManager);
     }
 
-    public String getToken() {
-        return securityPreferences.getSavedString(Constants.TOKEN);
-    }
 }

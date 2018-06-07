@@ -42,6 +42,10 @@ public class TaxaCondominioAPIModel {
         return itens;
     }
 
+    public long getUnidadeHabitacional() {
+        return unidadeHabitacional;
+    }
+
     @Override
     public String toString() {
         return "TaxaCondominio{ " +

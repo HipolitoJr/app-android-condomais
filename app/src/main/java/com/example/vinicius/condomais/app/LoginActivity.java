@@ -1,6 +1,7 @@
 package com.example.vinicius.condomais.app;
 
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -10,6 +11,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.vinicius.condomais.R;
+import com.example.vinicius.condomais.infra.FeaturesUtils;
 import com.example.vinicius.condomais.utils.Constants;
 import com.example.vinicius.condomais.infra.api.APIService;
 import com.example.vinicius.condomais.models.TokenAPIModel;
@@ -29,6 +31,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     @BindView(R.id.edit_usuario_login) protected EditText editUsuario;
     @BindView(R.id.edit_senha_login) protected EditText editSenha;
 
+    private ProgressDialog progressDialog;
     private APIService apiService;
     private SecurityPreferences securityPreferences;
 
@@ -42,18 +45,18 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     }
 
     private void setupViews() {
+        progressDialog = FeaturesUtils.initPgDialog(this, "Aguarde");
         apiService = new APIService("");
         securityPreferences = new SecurityPreferences(this);
 
-        if (estaLogado()) {
-            initProxActivity();
-        }
+        if (estaLogado()) initProxActivity();
 
         btnEntrar.setOnClickListener(this);
         btnCadastrar.setOnClickListener(this);
     }
 
     private void realizarLogin(Usuario usuario) {
+        progressDialog.show();
 
         Call<TokenAPIModel> call = apiService.tokenEndPoint.login(usuario);
 
@@ -67,7 +70,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
             @Override
             public void onFailure(Call<TokenAPIModel> call, Throwable t) {
-                Toast.makeText(LoginActivity.this, "Erro" + t.getMessage().toString(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(LoginActivity.this, "Falha na conexão!", Toast.LENGTH_SHORT).show();
+                progressDialog.hide();
             }
         });
 

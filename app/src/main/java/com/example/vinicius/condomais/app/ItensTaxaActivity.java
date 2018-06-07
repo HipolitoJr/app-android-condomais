@@ -1,5 +1,7 @@
 package com.example.vinicius.condomais.app;
 
+import android.content.Intent;
+import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -8,6 +10,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.vinicius.condomais.R;
+import com.example.vinicius.condomais.infra.FeaturesUtils;
 import com.example.vinicius.condomais.infra.api.APIService;
 import com.example.vinicius.condomais.infra.api.endpoints.TaxaCondominioEndPoint;
 import com.example.vinicius.condomais.models.ItemTaxaCondominioAPIModel;
@@ -32,8 +35,8 @@ public class ItensTaxaActivity extends AppCompatActivity {
     @BindView(R.id.txt_valor_total_itens_taxa_condominio) protected TextView txtValorTotal;
 
     private APIService apiService;
-    private SecurityPreferences securityPreferences;
     private long taxaCondominioSelecionada;
+    private long unidadeHabitacionalSelecionada;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,14 +48,22 @@ public class ItensTaxaActivity extends AppCompatActivity {
     }
 
     private void setupViews() {
-        securityPreferences = new SecurityPreferences(this);
-        apiService = new APIService(getToken());
+        apiService = new APIService(FeaturesUtils.getToken(this));
         taxaCondominioSelecionada = getIntent().getLongExtra(Constants.TAXA_CONDOMINIO_SELECIONADA, 0);
+        unidadeHabitacionalSelecionada = getIntent().getLongExtra(Constants.UNIDADE_HABITACIONAL_SELECIONADA, 0);
 
         if (taxaCondominioSelecionada != 0)
             getItensTaxaCondominio(taxaCondominioSelecionada);
         else
             Toast.makeText(this, "Taxa não encontrada", Toast.LENGTH_SHORT).show();
+    }
+
+    @Nullable
+    @Override
+    public Intent getParentActivityIntent() {
+        Intent intent = super.getParentActivityIntent();
+        intent.putExtra(Constants.UNIDADE_HABITACIONAL_SELECIONADA, unidadeHabitacionalSelecionada);
+        return intent;
     }
 
     private void getItensTaxaCondominio(long taxaCondominioSelecionada) {
@@ -85,9 +96,5 @@ public class ItensTaxaActivity extends AppCompatActivity {
 
         rvItensTaxaCondominio.setHasFixedSize(true);
         rvItensTaxaCondominio.setLayoutManager(linearLayoutManager);
-    }
-
-    private String getToken() {
-        return securityPreferences.getSavedString(Constants.TOKEN);
     }
 }
